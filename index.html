@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metta Assessoria</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo-metta.png">
+  <link rel="apple-touch-icon" href="images/logo-metta.png">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white min-h-screen">
+  <!-- Header Mobile -->
+  <header class="flex md:hidden items-center justify-center px-4 py-3 sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-metta-blue/20">
+    <div class="flex items-center logo-container py-2">
+      <a href="#hero">
+        <img src="images/logo-metta.png" alt="Logo Metta Assessoria" class="h-8 w-auto">
+      </a>
+    </div>
+  </header>
+  
+  <!-- Header Desktop -->
+  <header class="hidden md:flex items-center justify-between px-8 sticky top-0 z-50">
+    <div class="flex items-center logo-container py-2 mx-2">
+      <a href="#hero">
+        <img src="images/logo-metta.png" alt="Logo Metta Assessoria" class="h-10 w-auto">
+      </a>
+    </div>
+    <nav class="flex-1 flex justify-center mx-6">
+      <ul class="flex space-x-8 text-sm font-medium">
+        <li><a href="#cases" class="transition-colors duration-200">Cases</a></li>
+        <li><a href="#depoimentos" class="transition-colors duration-200">Depoimentos</a></li>
+        <li><a href="#sobre" class="transition-colors duration-200">Sobre nós</a></li>
+        <li><a href="#servicos" class="transition-colors duration-200">Serviços</a></li>
+      </ul>
+    </nav>
+    <a href="#contato" class="btn btn-primary px-6 py-2.5 rounded-full text-white font-medium text-sm tracking-wide">Fale conosco</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="floating-particles"></div>
+    <div class="container mx-auto px-4 py-4 md:py-6 relative z-10 w-full">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+        <div class="w-full lg:w-1/2 text-center lg:text-left">
+          <div class="badge-container mb-4 flex justify-center lg:justify-start animate-on-scroll animate-fade-up">
+            <span class="badge badge-glow">Marketing para Clínicas</span>
+          </div>
+          <h1 class="hero-title animate-on-scroll animate-fade-up parallax" data-speed="0.05">
+            Transforme sua <span class="text-gradient">clínica</span> em um 
+            <span class="text-highlight-blue">case de sucesso</span>
+          </h1>
+          
+          <p class="hero-subtitle animate-on-scroll animate-fade-up delay-100 parallax lg:text-left" data-speed="0.08">
+            A assessoria que já trouxe <strong>+10 mil novos pacientes</strong> para clínicas parceiras. Resultados comprovados em marketing e vendas para o setor de saúde.
+          </p>
+          
+          <div class="stats-container grid grid-cols-3 gap-2 sm:gap-4 mt-6 mb-6 animate-on-scroll animate-fade-up delay-300">
+            <div class="stat-item glassmorphism p-2 sm:p-4 rounded-lg">
+              <div class="text-metta-teal text-2xl sm:text-3xl font-bold float-text">+3</div>
+              <div class="text-gray-200 text-xs sm:text-sm">anos no mercado</div>
+            </div>
+            <div class="stat-item glassmorphism p-2 sm:p-4 rounded-lg">
+              <div class="text-metta-teal text-2xl sm:text-3xl font-bold float-text">+5mi</div>
+              <div class="text-gray-200 text-xs sm:text-sm">investidos</div>
+            </div>
+            <div class="stat-item glassmorphism p-2 sm:p-4 rounded-lg">
+              <div class="text-metta-teal text-2xl sm:text-3xl font-bold float-text">+10mil</div>
+              <div class="text-gray-200 text-xs sm:text-sm">pacientes</div>
+            </div>
+          </div>
+          
+          <div class="flex justify-center lg:justify-start mt-6 mb-6 animate-on-scroll animate-fade-up delay-200">
+            <a href="#contato" class="cta-button pulse-animation">Agende uma reunião</a>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-2/5">
+          <div class="hero-form-container animate-on-scroll animate-fade-up delay-200">
+            <div class="form-header flex items-center justify-between mb-2 sm:mb-4">
+              <h3 class="hero-form-title text-base sm:text-lg md:text-xl">Quero mais resultados</h3>
+              <div class="form-status px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-medium">Online</div>
+            </div>
+            
+            <form action="https://formspree.io/f/xdoqzqzq" method="POST" class="flex flex-col gap-3">
+              <div class="input-group">
+                <label for="nome" class="text-xs text-gray-300 mb-1 ml-1">Seu nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required class="input py-2" />
+              </div>
+              
+              <div class="input-group">
+                <label for="email" class="text-xs text-gray-300 mb-1 ml-1">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Ex: joao@exemplo.com" required class="input py-2" />
+              </div>
+              
+              <div class="input-group">
+                <label for="telefone" class="text-xs text-gray-300 mb-1 ml-1">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required class="input py-2" />
+              </div>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="input-group">
+                  <label for="clinica" class="text-xs text-gray-300 mb-1 ml-1">Nome da Clínica</label>
+                  <input type="text" id="clinica" name="clinica" placeholder="Sua clínica" required class="input py-2" />
+                </div>
+                
+                <div class="input-group">
+                  <label for="faturamento" class="text-xs text-gray-300 mb-1 ml-1">Faturamento</label>
+                  <select id="faturamento" name="faturamento" required class="input py-2 appearance-none">
+                    <option value="">Selecione</option>
+                    <option value="Até 20 mil">Até 20 mil</option>
+                    <option value="21 mil a 50 mil">21 mil a 50 mil</option>
+                    <option value="51 mil a 100 mil">51 mil a 100 mil</option>
+                    <option value="Acima de 100 mil">Acima de 100 mil</option>
+                  </select>
+                </div>
+              </div>
+              
+              <p class="text-gray-300 text-xs sm:text-sm mt-2 mb-3">Seus dados estão seguros. Entraremos em contato em até 8h.</p>
+              
+              <button type="submit" class="btn btn-success">Quero aumentar meus resultados</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Laboratório de Resultados Section -->
+  <section class="analytics-lab-section py-16 px-4 md:px-8 relative overflow-hidden">
+    <div class="absolute inset-0 bg-dots-pattern z-0"></div>
+    
+    <div class="container mx-auto max-w-6xl relative z-10">
+      <div class="text-center mb-12 animate-on-scroll animate-fade-up">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Laboratório de Resultados</h2>
+        <p class="text-gray-300 max-w-3xl mx-auto">
+          Desenvolvemos estratégias científicas de crescimento para sua clínica, combinando dados precisos e 
+          táticas inovadoras para garantir resultados consistentes e mensuráveis.
+        </p>
+        <div class="mt-8">
+          <a href="#contato" class="inline-flex items-center bg-gradient-to-r from-metta-blue to-metta-cyan hover:from-metta-cyan hover:to-metta-blue text-white py-3 px-6 rounded-md font-medium transition-all duration-300 shadow-glow">
+            Inicie sua análise gratuita <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+        <!-- Análise Métrica Precisa -->
+        <div class="analytics-card glassmorphism rounded-xl p-6 md:p-8 hover-lift animate-on-scroll animate-fade-right">
+          <h3 class="text-xl md:text-2xl font-semibold mb-4 text-white">Análise Métrica Precisa</h3>
+          <p class="text-gray-300 mb-6">Diagnosticamos o desempenho atual da sua clínica e identificamos oportunidades de crescimento baseadas em dados concretos, não em suposições.</p>
+          
+          <div class="mt-6 relative h-64 md:h-72 metrics-display overflow-hidden">
+            <div class="metrics-grid">
+              <div class="metric-item pulse-slow">
+                <div class="metric-icon bg-metta-blue/20 text-metta-blue">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                  </svg>
+                </div>
+                <div class="metric-detail">
+                  <span class="text-metta-teal text-xl font-bold">+225%</span>
+                  <span class="text-sm text-gray-400">ROI</span>
+                </div>
+              </div>
+
+              <div class="metric-item pulse-slow delay-200">
+                <div class="metric-icon bg-metta-cyan/20 text-metta-cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                </div>
+                <div class="metric-detail">
+                  <span class="text-metta-cyan text-xl font-bold">+42%</span>
+                  <span class="text-sm text-gray-400">Pacientes</span>
+                </div>
+              </div>
+
+              <div class="metric-item pulse-slow delay-300">
+                <div class="metric-icon bg-metta-teal/20 text-metta-teal">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="metric-detail">
+                  <span class="text-metta-teal text-xl font-bold">+65%</span>
+                  <span class="text-sm text-gray-400">Faturamento</span>
+                </div>
+              </div>
+
+              <div class="metric-item pulse-slow delay-400">
+                <div class="metric-icon bg-metta-blue/20 text-metta-blue">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                  </svg>
+                </div>
+                <div class="metric-detail">
+                  <span class="text-metta-blue text-xl font-bold">-38%</span>
+                  <span class="text-sm text-gray-400">CAC</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="dna-helix">
+              <div class="dna-strand"></div>
+            </div>
+            
+            <div class="insight-tag absolute top-3 right-3 bg-gradient-to-r from-metta-teal to-metta-cyan px-3 py-1 rounded text-xs font-medium">
+              Resultados reais de clientes
+            </div>
+          </div>
+        </div>
+
+        <!-- Estratégia Personalizada -->
+        <div class="analytics-card glassmorphism rounded-xl p-6 md:p-8 hover-lift animate-on-scroll animate-fade-left">
+          <h3 class="text-xl md:text-2xl font-semibold mb-4 text-white">Estratégia Personalizada para sua Especialidade</h3>
+          <p class="text-gray-300 mb-6">Criamos um plano exclusivo baseado na sua especialidade médica e no perfil do seu paciente ideal, maximizando a eficiência dos seus investimentos.</p>
+          
+          <div class="mt-6 relative h-64 md:h-72 strategy-blueprint overflow-hidden">
+            <div class="blueprint-grid">
+              <div class="blueprint-connection-lines"></div>
+              
+              <div class="blueprint-node blueprint-node-1 animate-pulse-slow">
+                <div class="blueprint-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                  </svg>
+                </div>
+                <span>Pesquisa</span>
+              </div>
+              
+              <div class="blueprint-node blueprint-node-2 animate-pulse-slow delay-150">
+                <div class="blueprint-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+                  </svg>
+                </div>
+                <span>Planejamento</span>
+              </div>
+              
+              <div class="blueprint-node blueprint-node-3 animate-pulse-slow delay-300">
+                <div class="blueprint-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+                  </svg>
+                </div>
+                <span>Execução</span>
+              </div>
+              
+              <div class="blueprint-node blueprint-node-4 animate-pulse-slow delay-450">
+                <div class="blueprint-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <span>Otimização</span>
+              </div>
+              
+              <div class="blueprint-node blueprint-node-5 animate-pulse-slow delay-600">
+                <div class="blueprint-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                  </svg>
+                </div>
+                <span>Escala</span>
+              </div>
+            </div>
+            
+            <div class="specialties-pills">
+              <div class="specialty-pill animate-float">Odontologia</div>
+              <div class="specialty-pill animate-float delay-150">Dermatologia</div>
+              <div class="specialty-pill animate-float delay-300">Oftalmologia</div>
+              <div class="specialty-pill animate-float delay-450">Ortopedia</div>
+              <div class="specialty-pill animate-float delay-600">Medicina Estética</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Vantagens - Nova subsection -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll animate-fade-up">
+        <div class="advantage-card text-center p-6 rounded-lg border border-metta-blue/20">
+          <div class="w-12 h-12 bg-metta-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-metta-blue">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+          <h4 class="text-metta-cyan font-semibold mb-2">Agilidade</h4>
+          <p class="text-gray-300 text-sm">Começamos a gerar resultados em semanas, não meses. Metodologia ágil e adaptativa.</p>
+        </div>
+        
+        <div class="advantage-card text-center p-6 rounded-lg border border-metta-cyan/20">
+          <div class="w-12 h-12 bg-metta-cyan/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-metta-cyan">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h4 class="text-metta-cyan font-semibold mb-2">Transparência</h4>
+          <p class="text-gray-300 text-sm">Dashboards em tempo real e relatórios detalhados. Acompanhe todas as métricas importantes.</p>
+        </div>
+        
+        <div class="advantage-card text-center p-6 rounded-lg border border-metta-teal/20">
+          <div class="w-12 h-12 bg-metta-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-metta-teal">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+            </svg>
+          </div>
+          <h4 class="text-metta-cyan font-semibold mb-2">Previsibilidade</h4>
+          <p class="text-gray-300 text-sm">Modelos de atribuição avançados que permitem prever resultados e planejar crescimento sustentável.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases de Sucesso -->
+  <section id="cases" class="px-4 py-16 section section-glow flex flex-col items-center scale-on-scroll">
+    <div class="mb-3 animate-on-scroll animate-fade-up">
+      <span class="badge badge-teal">CASES DE SUCESSO</span>
+    </div>
+    <h2 class="text-center text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight animate-on-scroll animate-fade-up delay-100">Expertise respaldada por <span class="text-metta-teal">resultados</span></h2>
+    <div class="flex flex-col md:flex-row gap-6 w-full max-w-5xl mt-8">
+      <!-- Card 1 -->
+      <div class="card hover-lift flex-1 flex flex-col overflow-hidden animate-on-scroll animate-fade-up highlight-on-view">
+        <div class="gradient-blue flex items-center justify-center h-36 rounded-t-lg">
+          <img src="images/dra-cinthya.png" alt="Dra. Cinthya Moura" class="avatar h-20 w-20 object-cover shadow-lg" />
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <h3 class="font-semibold text-lg text-white mb-1">Dra. Cinthya Moura</h3>
+          <span class="text-metta-cyan text-sm mb-3">Especialista em Harmonização Facial</span>
+          <p class="text-gray-300 text-sm">A clínica cresceu <span class="font-bold text-metta-teal">+40% em agendamentos</span> em apenas 3 meses com as estratégias da Metta.<br>Com tráfego pago e atendimento otimizado, transformamos interesse em agendamentos reais e recorrentes.</p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card hover-lift flex-1 flex flex-col overflow-hidden animate-on-scroll animate-fade-up highlight-on-view">
+        <div class="gradient-blue flex items-center justify-center h-36 rounded-t-lg">
+          <img src="images/dra-pamylla.png" alt="Dra. Pamylla Geronço" class="avatar h-20 w-20 object-cover shadow-lg" />
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <h3 class="font-semibold text-lg text-white mb-1">Dra. Pamylla Geronço</h3>
+          <span class="text-metta-cyan text-sm mb-3">Odontologia de excelência com cuidado humanizado</span>
+          <p class="text-gray-300 text-sm">Formada pela Universidade de Brasília (UnB) e especialista em Odontologia Estética, a Dra Pamylla Geronço atua há mais de 10 anos transformando sorrisos e elevando a autoestima de seus pacientes. <br>Ajudamos a clínica crescer <span class="font-bold text-metta-teal">+30% em um período de 68 dias</span>, através de estratégias orgânicas utilizando o engajamento do Instagram e tráfego bem direcionado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="flex flex-col items-center justify-center px-4 sm:px-6 py-16">
+    <div class="w-full max-w-4xl mx-auto rounded-2xl border border-metta-blue/30 bg-card bg-opacity-40 shadow-glow flex flex-col items-center p-8 sm:p-12 animate-on-scroll animate-zoom hover-lift">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-white mb-4">A Metta é mais que uma assessoria. Somos verdadeiros <span class="text-metta-teal animate-shimmer">aceleradores de clínicas.</span></h2>
+      <p class="text-center text-gray-300 mb-8 text-base max-w-2xl">O nosso trabalho é totalmente voltado para dados e não suposições. Vamos buscar acelerar a sua clínica em até 10x nos primeiros 6 meses.</p>
+      <a href="#contato" class="cta-button">Agende já uma reunião</a>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section id="depoimentos" class="px-4 py-16 section section-glow flex flex-col items-center scale-on-scroll">
+    <div class="mb-3 animate-on-scroll animate-fade-up">
+      <span class="badge badge-blue">DEPOIMENTOS</span>
+    </div>
+    <h2 class="text-center text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight animate-on-scroll animate-fade-up delay-100">Veja o que dizem <span class="text-metta-cyan">nossos parceiros</span></h2>
+    
+    <div class="testimonial-carousel w-full max-w-4xl mt-8 relative">
+      <div class="testimonial-container flex transition-transform duration-500 ease-in-out">
+        <!-- Depoimento 1 -->
+        <div class="testimonial-slide w-full flex-shrink-0">
+          <div class="card hover-lift flex flex-col overflow-hidden p-6 items-center animate-on-scroll animate-fade-up highlight-on-view">
+            <div class="quote-icon mb-4 text-metta-cyan opacity-30">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.9989 15C12.8296 15 13.4989 14.3284 13.4989 13.5C13.4989 12.6716 12.8296 12 11.9989 12C11.1706 12 10.4989 12.6716 10.4989 13.5C10.4989 14.3284 11.1706 15 11.9989 15Z"></path>
+                <path d="M11.9989 8.99999C10.9335 8.99999 9.91211 9.42856 9.15013 10.1906C8.38814 10.9526 7.9614 11.9726 7.9614 13.038V13.962C7.9614 15.0274 8.38814 16.0474 9.15013 16.8094C9.91211 17.5714 10.9335 18 11.9989 18C13.0643 18 14.0857 17.5714 14.8477 16.8094C15.6097 16.0474 16.0364 15.0274 16.0364 13.962V13.038C16.0364 11.9726 15.6097 10.9526 14.8477 10.1906C14.0857 9.42856 13.0643 8.99999 11.9989 8.99999V8.99999Z" stroke="currentColor" stroke-width="2"></path>
+                <path d="M6.6 9H4.8C4.32261 9 3.86477 9.18964 3.52721 9.52721C3.18964 9.86477 3 10.3226 3 10.8V14.4C3 14.8774 3.18964 15.3352 3.52721 15.6728C3.86477 16.0104 4.32261 16.2 4.8 16.2H5.4C5.87739 16.2 6.33523 16.0104 6.67279 15.6728C7.01036 15.3352 7.2 14.8774 7.2 14.4V10.8C7.2 10.3226 7.01036 9.86477 6.67279 9.52721C6.33523 9.18964 5.87739 9 5.4 9H6.6ZM19.2 9H17.4C16.9226 9 16.4648 9.18964 16.1272 9.52721C15.7896 9.86477 15.6 10.3226 15.6 10.8V14.4C15.6 14.8774 15.7896 15.3352 16.1272 15.6728C16.4648 16.0104 16.9226 16.2 17.4 16.2H18C18.4774 16.2 18.9352 16.0104 19.2728 15.6728C19.6104 15.3352 19.8 14.8774 19.8 14.4V10.8C19.8 10.3226 19.6104 9.86477 19.2728 9.52721C18.9352 9.18964 18.4774 9 18 9H19.2Z" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </div>
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João Moreira" class="avatar h-16 w-16 mb-4" />
+            <h3 class="font-semibold text-white text-base mb-1">João Moreira</h3>
+            <span class="text-metta-cyan text-xs mb-3">CEO da VidaNova Clínica</span>
+            <p class="text-gray-300 text-sm text-center">"A Metta foi um divisor de águas para a VidaNova. Antes, tínhamos dificuldades em alcançar novos pacientes e preencher nossa agenda. Com a estratégia bem planejada da equipe, conseguimos dobrar o número de consultas agendadas em apenas dois meses. A dedicação e o profissionalismo da Metta fizeram toda a diferença para o nosso crescimento!"</p>
+          </div>
+        </div>
+        
+        <!-- Depoimento 2 -->
+        <div class="testimonial-slide w-full flex-shrink-0">
+          <div class="card hover-lift flex flex-col overflow-hidden p-6 items-center animate-on-scroll animate-fade-up highlight-on-view">
+            <div class="quote-icon mb-4 text-metta-cyan opacity-30">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.9989 15C12.8296 15 13.4989 14.3284 13.4989 13.5C13.4989 12.6716 12.8296 12 11.9989 12C11.1706 12 10.4989 12.6716 10.4989 13.5C10.4989 14.3284 11.1706 15 11.9989 15Z"></path>
+                <path d="M11.9989 8.99999C10.9335 8.99999 9.91211 9.42856 9.15013 10.1906C8.38814 10.9526 7.9614 11.9726 7.9614 13.038V13.962C7.9614 15.0274 8.38814 16.0474 9.15013 16.8094C9.91211 17.5714 10.9335 18 11.9989 18C13.0643 18 14.0857 17.5714 14.8477 16.8094C15.6097 16.0474 16.0364 15.0274 16.0364 13.962V13.038C16.0364 11.9726 15.6097 10.9526 14.8477 10.1906C14.0857 9.42856 13.0643 8.99999 11.9989 8.99999V8.99999Z" stroke="currentColor" stroke-width="2"></path>
+                <path d="M6.6 9H4.8C4.32261 9 3.86477 9.18964 3.52721 9.52721C3.18964 9.86477 3 10.3226 3 10.8V14.4C3 14.8774 3.18964 15.3352 3.52721 15.6728C3.86477 16.0104 4.32261 16.2 4.8 16.2H5.4C5.87739 16.2 6.33523 16.0104 6.67279 15.6728C7.01036 15.3352 7.2 14.8774 7.2 14.4V10.8C7.2 10.3226 7.01036 9.86477 6.67279 9.52721C6.33523 9.18964 5.87739 9 5.4 9H6.6ZM19.2 9H17.4C16.9226 9 16.4648 9.18964 16.1272 9.52721C15.7896 9.86477 15.6 10.3226 15.6 10.8V14.4C15.6 14.8774 15.7896 15.3352 16.1272 15.6728C16.4648 16.0104 16.9226 16.2 17.4 16.2H18C18.4774 16.2 18.9352 16.0104 19.2728 15.6728C19.6104 15.3352 19.8 14.8774 19.8 14.4V10.8C19.8 10.3226 19.6104 9.86477 19.2728 9.52721C18.9352 9.18964 18.4774 9 18 9H19.2Z" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </div>
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mariana Almeida" class="avatar h-16 w-16 mb-4" />
+            <h3 class="font-semibold text-white text-base mb-1">Mariana Almeida</h3>
+            <span class="text-metta-cyan text-xs mb-3">CMO da SantéCare Saúde</span>
+            <p class="text-gray-300 text-sm text-center">"Vou contar como a Metta foi a melhor decisão para a SantéCare. A equipe nos ajudou a atrair mais pacientes para nossos check-ups preventivos e tratamentos especializados. Além disso, nosso engajamento nas redes sociais disparou, e conseguimos fidelizar muito mais clientes. Estamos muito satisfeitos com os resultados!"</p>
+          </div>
+        </div>
+        
+        <!-- Depoimento 3 -->
+        <div class="testimonial-slide w-full flex-shrink-0">
+          <div class="card hover-lift flex flex-col overflow-hidden p-6 items-center animate-on-scroll animate-fade-up highlight-on-view">
+            <div class="quote-icon mb-4 text-metta-cyan opacity-30">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.9989 15C12.8296 15 13.4989 14.3284 13.4989 13.5C13.4989 12.6716 12.8296 12 11.9989 12C11.1706 12 10.4989 12.6716 10.4989 13.5C10.4989 14.3284 11.1706 15 11.9989 15Z"></path>
+                <path d="M11.9989 8.99999C10.9335 8.99999 9.91211 9.42856 9.15013 10.1906C8.38814 10.9526 7.9614 11.9726 7.9614 13.038V13.962C7.9614 15.0274 8.38814 16.0474 9.15013 16.8094C9.91211 17.5714 10.9335 18 11.9989 18C13.0643 18 14.0857 17.5714 14.8477 16.8094C15.6097 16.0474 16.0364 15.0274 16.0364 13.962V13.038C16.0364 11.9726 15.6097 10.9526 14.8477 10.1906C14.0857 9.42856 13.0643 8.99999 11.9989 8.99999V8.99999Z" stroke="currentColor" stroke-width="2"></path>
+                <path d="M6.6 9H4.8C4.32261 9 3.86477 9.18964 3.52721 9.52721C3.18964 9.86477 3 10.3226 3 10.8V14.4C3 14.8774 3.18964 15.3352 3.52721 15.6728C3.86477 16.0104 4.32261 16.2 4.8 16.2H5.4C5.87739 16.2 6.33523 16.0104 6.67279 15.6728C7.01036 15.3352 7.2 14.8774 7.2 14.4V10.8C7.2 10.3226 7.01036 9.86477 6.67279 9.52721C6.33523 9.18964 5.87739 9 5.4 9H6.6ZM19.2 9H17.4C16.9226 9 16.4648 9.18964 16.1272 9.52721C15.7896 9.86477 15.6 10.3226 15.6 10.8V14.4C15.6 14.8774 15.7896 15.3352 16.1272 15.6728C16.4648 16.0104 16.9226 16.2 17.4 16.2H18C18.4774 16.2 18.9352 16.0104 19.2728 15.6728C19.6104 15.3352 19.8 14.8774 19.8 14.4V10.8C19.8 10.3226 19.6104 9.86477 19.2728 9.52721C18.9352 9.18964 18.4774 9 18 9H19.2Z" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </div>
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Lucas Ferreira" class="avatar h-16 w-16 mb-4" />
+            <h3 class="font-semibold text-white text-base mb-1">Lucas Ferreira</h3>
+            <span class="text-metta-cyan text-xs mb-3">Co-fundador da Clínica Bem Viver</span>
+            <p class="text-gray-300 text-sm text-center">"A parceria com a Metta transformou completamente a nossa clínica. Eles entenderam nossas necessidades e criaram campanhas que realmente impactaram nosso público. Hoje, nossa agenda está cheia, e nossa presença online é muito mais forte. A Metta superou todas as nossas expectativas!"</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Controles do carrossel -->
+      <div class="carousel-controls flex justify-center mt-6 gap-2">
+        <button class="carousel-dot active w-3 h-3 rounded-full bg-gray-600 hover:bg-metta-blue transition-colors" data-index="0"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-metta-blue transition-colors" data-index="1"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-metta-blue transition-colors" data-index="2"></button>
+      </div>
+      
+      <!-- Setas de navegação -->
+      <button class="carousel-arrow prev absolute top-1/2 left-0 transform -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white rounded-full p-2 ml-2 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="carousel-arrow next absolute top-1/2 right-0 transform -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white rounded-full p-2 mr-2 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Sobre nós -->
+  <section id="sobre" class="px-4 py-16 section flex flex-col items-center scale-on-scroll">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-10 w-full max-w-6xl">
+      <div class="flex-1">
+        <div class="mb-3 flex justify-center md:justify-start animate-on-scroll animate-fade-right">
+          <span class="badge badge-blue">SOBRE NÓS</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 text-center md:text-left animate-on-scroll animate-fade-right delay-100">Especialistas em <span class="text-metta-cyan">alta performance</span> com anúncios online</h2>
+        <p class="text-gray-300 max-w-xl mb-8 text-center md:text-left leading-relaxed animate-on-scroll animate-fade-right delay-200">A <span class="text-metta-cyan font-semibold">Metta Assessoria</span> é uma Assessoria de Marketing e Vendas com mais de <span class="text-metta-teal font-bold">3 anos de atuação</span>, mais de <span class="text-metta-teal font-bold">5 milhões de reais investidos</span> em anúncios online e mais de <span class="text-metta-teal font-bold">10 mil novos pacientes</span> para os nossos parceiros. Entregamos uma assessoria exclusiva de ponta para cada clínica, com foco em acelerar as vendas e o crescimento do negócio. Chega de ficar trocando de empresas de marketing, a partir de agora, a Metta será a sua empresa definitiva e de confiança. Seja um dos nossos cases de sucesso.</p>
+        <div class="flex flex-row gap-8 mt-6 justify-center md:justify-start animate-on-scroll animate-fade-right delay-300">
+          <div class="flex flex-col items-center">
+            <span class="text-metta-teal text-3xl font-bold float-text">+3</span>
+            <span class="text-gray-400 text-sm">anos de atuação</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-metta-teal text-3xl font-bold float-text">+5mi</span>
+            <span class="text-gray-400 text-sm">investidos em anúncios</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-metta-teal text-3xl font-bold float-text">+10mil</span>
+            <span class="text-gray-400 text-sm">novos pacientes</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center items-center mt-8 md:mt-0 animate-on-scroll animate-fade-left">
+        <img src="images/metta-mockup.png" alt="Metta Assessoria" class="rounded-xl w-full max-w-md shadow-xl object-cover hover-lift parallax" data-speed="0.03" />
+      </div>
+    </div>
+  </section>
+
+ <!-- Botão Agende já uma reunião -->
+  <div class="flex justify-center my-12 animate-on-scroll animate-fade-up">
+    <a href="#contato" class="cta-button">Agende já uma reunião</a>
+  </div>
+
+  <!-- Serviços -->
+  <section id="servicos" class="px-4 py-16 section section-glow flex flex-col items-center scale-on-scroll">
+    <div class="mb-3 flex justify-center animate-on-scroll animate-fade-up">
+      <span class="badge badge-teal">SERVIÇOS</span>
+    </div>
+    <h2 class="text-center text-3xl sm:text-4xl font-bold text-white mb-4 animate-on-scroll animate-fade-up delay-100">Como podemos <span class="text-metta-cyan">te ajudar</span>?</h2>
+    <p class="text-center text-gray-300 mb-10 text-base max-w-2xl animate-on-scroll animate-fade-up delay-200">Conheça nossas soluções para acelerar o crescimento da sua clínica.</p>
+    <div class="flex flex-col md:flex-row gap-6 w-full max-w-5xl">
+      <!-- Card 1 -->
+      <div class="service-card card hover-lift flex-1 flex flex-col overflow-hidden p-6 items-center animate-on-scroll animate-fade-up highlight-on-view">
+        <div class="service-icon mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal">
+            <path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"/>
+            <path d="M15 7h6v6"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-metta-teal mb-3">Assessoria de Marketing e Vendas</h3>
+        <p class="text-gray-300 text-sm text-center mb-4">Gestão de anúncios de alta performance com objetivo de acelerar as vendas e o crescimento da sua clínica.</p>
+        <ul class="text-sm text-gray-400 space-y-2 w-full mb-4">
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Campanhas de tráfego pago otimizadas
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Análise de dados e métricas
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Estratégias de conversão
+          </li>
+        </ul>
+      </div>
+      <!-- Card 2 -->
+      <div class="service-card card hover-lift flex-1 flex flex-col overflow-hidden p-6 items-center animate-on-scroll animate-fade-up highlight-on-view">
+        <div class="service-icon mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16.5 7.5v.001"></path>
+            <circle cx="12" cy="12" r="3.5"></circle>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-metta-teal mb-3">Social Media</h3>
+        <p class="text-gray-300 text-sm text-center mb-4">Gestão de redes sociais estratégicas pra levar audiência, autoridade, reconhecimento e mais vendas para a sua clínica.</p>
+        <ul class="text-sm text-gray-400 space-y-2 w-full mb-4">
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Criação de conteúdo relevante
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Aumento de engajamento
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Gestão de reputação online
+          </li>
+        </ul>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card card hover-lift flex-1 flex flex-col overflow-hidden p-6 items-center animate-on-scroll animate-fade-up highlight-on-view">
+        <div class="service-icon mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-metta-teal mb-3">Assessoria Comercial</h3>
+        <p class="text-gray-300 text-sm text-center mb-4">Assessoria comercial completa e de ponta pra otimizar os resultados do seu time comercial e vender cada vez mais.</p>
+        <ul class="text-sm text-gray-400 space-y-2 w-full mb-4">
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Treinamento de equipe
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Otimização de processos de venda
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-metta-teal mr-2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Aumento de taxa de conversão
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-metta-blue/20 py-12 mt-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 animate-on-scroll animate-fade-up">
+      <div class="flex flex-col items-center md:items-start">
+        <img src="images/logo-metta.png" alt="Logo Metta Assessoria" class="h-14 w-auto mb-4">
+        <span class="text-gray-400 text-sm">contato@mettaassessoria.com.br</span>
+        <span class="text-gray-400 text-sm">DF Plaza Shopping - R. Copaíba, lote 01 - Águas Claras, Brasília - DF, 71919-540</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <span class="text-gray-400 text-sm">Siga-nos</span>
+        <a href="https://www.instagram.com/mettassessoria" target="_blank" rel="noopener" class="hover:scale-110 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-8 w-8 text-metta-blue">
+            <rect width="20" height="20" x="2" y="2" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-gray-600 text-xs animate-on-scroll animate-fade-up delay-100">
+      2024 © Metta Assessoria – Assessoria de Marketing e Vendas. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html> 
