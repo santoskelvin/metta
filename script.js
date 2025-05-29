@@ -41,6 +41,44 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cria partículas flutuantes para o hero
     createFloatingParticles();
+
+    // Adiciona classe de escala às seções
+    document.querySelectorAll('section:not(.hero-section)').forEach(section => {
+        section.classList.add('scale-on-scroll');
+    });
+
+    // Funcionalidade do FAQ
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+
+      question.addEventListener('click', () => {
+        const isOpen = answer.classList.contains('open');
+        
+        // Fecha todos os outros answers abertos para um efeito "accordion"
+        // Comente ou remova o bloco abaixo se quiser que múltiplos possam estar abertos
+        document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
+          if (openAnswer !== answer) {
+            openAnswer.classList.remove('open');
+            openAnswer.style.maxHeight = '0px';
+            const otherIcon = openAnswer.previousElementSibling.querySelector('.faq-icon');
+            if (otherIcon) {
+              otherIcon.classList.remove('rotate-180');
+            }
+          }
+        });
+
+        answer.classList.toggle('open');
+        icon.classList.toggle('rotate-180');
+        if (answer.classList.contains('open')) {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        } else {
+          answer.style.maxHeight = '0px';
+        }
+      });
+    });
 });
 
 // Função para inicializar as animações de scroll
@@ -422,30 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Anima os cards de serviços com atraso maior
     animateSequence('#servicos .flex-col.md\\:flex-row', '.service-card', 200);
     
-    // Adiciona efeito de destaque ao texto
-    const highlightElements = document.querySelectorAll('.text-metta-teal, .text-metta-cyan');
-    highlightElements.forEach(element => {
-        // Adiciona classe para o efeito de shimmer aos textos destacados
-        if (Math.random() > 0.5) { // Aplica apenas em alguns elementos aleatoriamente para não sobrecarregar
-            element.classList.add('animate-shimmer');
-        }
-    });
-    
-    // Adiciona efeito de flutuação aos títulos
-    const headings = document.querySelectorAll('h1, h2');
-    headings.forEach(heading => {
-        if (Math.random() > 0.7) {
-            heading.classList.add('float-text');
-        }
-    });
-    
-    // Adiciona efeito de pulso aos botões principais
-    const ctaButtons = document.querySelectorAll('.btn-primary');
-    ctaButtons.forEach(button => {
-        button.classList.add('animate-pulse');
-    });
-    
-    // Adiciona classe de paralaxe a elementos selecionados
+    // Adiciona classe de paralaxe a elementos selecionados - mantém o efeito parallax
     document.querySelectorAll('.hero-section h1, .section > img').forEach((el, index) => {
         el.classList.add('parallax');
         el.setAttribute('data-speed', (0.05 + (index * 0.02)).toString());
@@ -454,10 +469,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adiciona classe de destaque aos cards
     document.querySelectorAll('.card').forEach(card => {
         card.classList.add('highlight-on-view');
-    });
-    
-    // Adiciona classe de escala às seções
-    document.querySelectorAll('section:not(.hero-section)').forEach(section => {
-        section.classList.add('scale-on-scroll');
     });
 }); 

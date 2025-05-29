@@ -173,13 +173,13 @@ nav ul li a:hover::after {
   position: relative;
   overflow: hidden;
   padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-bottom: 6rem !important; /* Mais espaço para transição */
 }
 
 @media (max-width: 768px) {
   .hero-section {
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem !important;
   }
 }
 
@@ -890,26 +890,53 @@ nav ul li a:hover::after {
   box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
 }
 
-/* Carrossel de depoimentos */
+/* Carrossel de depoimentos - CORREÇÃO DE OVERFLOW */
 .testimonial-carousel {
   position: relative;
-  overflow: hidden;
+  overflow: visible !important; /* Permitir que elementos expandam */
+  padding: 2rem 0; /* Adicionar padding para acomodar expansão */
 }
 
 .testimonial-container {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  position: relative;
+  z-index: 1;
 }
 
 .testimonial-slide {
   flex: 0 0 100%;
   padding: 0 1rem;
+  position: relative;
 }
 
+/* Adicionar container wrapper para o card de depoimento */
+.testimonial-slide .card {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.testimonial-slide .card:hover {
+  z-index: 10 !important; /* Garantir que fique acima de outros elementos */
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Container pai da seção de depoimentos */
+#depoimentos {
+  position: relative;
+  overflow: visible !important; /* Mantido para o carrossel */
+  z-index: 1;
+  /* padding-bottom: 8rem; // Removido para nova abordagem de transição */
+}
+
+/* Garantir que os controles não interfiram */
 .carousel-controls {
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
+  position: relative;
+  z-index: 5;
 }
 
 .carousel-dot {
@@ -928,6 +955,7 @@ nav ul li a:hover::after {
   transform: scale(1.2);
 }
 
+/* Setas do carrossel - ajustes de posicionamento */
 .carousel-arrow {
   position: absolute;
   top: 50%;
@@ -941,21 +969,48 @@ nav ul li a:hover::after {
   justify-content: center;
   border: 1px solid rgba(34, 211, 238, 0.2);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  z-index: 10;
+  transition: all 0.3s ease;
+  z-index: 20; /* Aumentar z-index */
 }
 
 .carousel-arrow:hover {
   background-color: rgba(15, 23, 42, 0.9);
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  z-index: 21; /* Garantir que fique acima ao hover */
 }
 
 .carousel-arrow.prev {
-  left: 0.5rem;
+  left: -1rem; /* Mover mais para fora para evitar sobreposição */
 }
 
 .carousel-arrow.next {
-  right: 0.5rem;
+  right: -1rem; /* Mover mais para fora para evitar sobreposição */
+}
+
+/* Wrapper adicional para conter o overflow dos slides */
+.testimonial-carousel {
+  margin: 0 3rem; /* Espaço para as setas */
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .testimonial-carousel {
+    margin: 0 1rem;
+  }
+  
+  .carousel-arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .carousel-arrow.prev {
+    left: -0.5rem;
+  }
+  
+  .carousel-arrow.next {
+    right: -0.5rem;
+  }
 }
 
 /* Badge com maior contraste */
@@ -1615,6 +1670,22 @@ nav ul li a:hover::after {
   text-shadow: 0 0 10px rgba(0, 191, 165, 0.3);
 }
 
+/* Regras específicas para elementos que devem manter cor cyan */
+#cases .text-metta-cyan,
+.text-metta-cyan.animate-shimmer,
+.service-card h3.text-metta-cyan,
+.service-icon .text-metta-cyan,
+span.text-metta-cyan {
+  color: #20d9ff !important;
+  text-shadow: 0 0 10px rgba(0, 184, 212, 0.3) !important;
+}
+
+/* Garantir que os elementos destacados mantenham a cor correta */
+span.font-bold.text-metta-cyan {
+  color: #20d9ff !important;
+  text-shadow: 0 0 8px rgba(0, 184, 212, 0.4) !important;
+}
+
 /* Ajuste para textos destacados em "Sobre nós" */
 .text-highlight-blue {
   color: #39c2ff;
@@ -1662,4 +1733,1811 @@ header img {
   font-weight: 600;
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ====== TRANSFORMAÇÃO VISUAL EXPRESSIVA - CASES DE SUCESSO ====== */
+
+/* Cases de Sucesso - Design completamente renovado */
+#cases {
+  background: linear-gradient(135deg, 
+    #0a0e1a 0%, 
+    #1a1f3a 25%,
+    #0f1828 50%,
+    #1e2a4a 75%,
+    #0a0e1a 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 6rem 1rem !important;
+}
+
+/* Efeito de fundo com partículas animadas e grid futurista */
+#cases::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(45, 255, 200, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(30, 136, 229, 0.08) 0%, transparent 60%);
+  z-index: 0;
+  animation: backgroundPulse 8s ease-in-out infinite;
+}
+
+#cases::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, rgba(0, 229, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 229, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(45, 255, 200, 0.02) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(45, 255, 200, 0.02) 75%);
+  background-size: 60px 60px;
+  background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+  z-index: 1;
+  opacity: 0.4;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+/* Container dos cards com layout mais dinâmico */
+#cases .flex-col.md\\:flex-row {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+  gap: 3rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  perspective: 1000px !important;
+}
+
+/* Cards com design futurista e efeitos 3D */
+#cases .card {
+  background: linear-gradient(145deg, 
+    rgba(10, 25, 45, 0.95) 0%, 
+    rgba(15, 30, 55, 0.98) 50%,
+    rgba(8, 20, 40, 0.95) 100%) !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(0, 229, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 229, 255, 0.2) !important;
+  border-radius: 20px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(20px) !important;
+  transform: rotateY(5deg) rotateX(2deg) !important;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1) !important;
+}
+
+/* Efeito de borda animada nos cards */
+#cases .card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    #00e5ff 0%, 
+    #2dffc8 25%, 
+    #00e5ff 50%, 
+    #1e88e5 75%, 
+    #00e5ff 100%);
+  border-radius: 20px;
+  z-index: -1;
+  background-size: 400% 400%;
+  animation: borderGlow 4s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#cases .card:hover::before {
+  opacity: 1;
+}
+
+@keyframes borderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+#cases .card:hover {
+  transform: rotateY(0deg) rotateX(0deg) translateY(-15px) scale(1.02) !important;
+  box-shadow: 
+    0 35px 70px -15px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(0, 229, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 229, 255, 0.4) !important;
+}
+
+/* Seção do avatar com design holográfico */
+#cases .gradient-blue {
+  background: linear-gradient(135deg, 
+    #00e5ff 0%, 
+    #2dffc8 25%,
+    #1e88e5 50%,
+    #00bcd4 75%,
+    #00e5ff 100%) !important;
+  background-size: 300% 300% !important;
+  animation: holographicShift 6s ease-in-out infinite !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 16px 16px 0 0 !important;
+  height: 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@keyframes holographicShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+#cases .gradient-blue::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: holographicSweep 3s linear infinite;
+}
+
+@keyframes holographicSweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Avatar com efeito neon e pulsação */
+#cases .avatar {
+  border: 4px solid rgba(255, 255, 255, 1) !important;
+  box-shadow: 
+    0 0 0 3px rgba(0, 229, 255, 0.6),
+    0 0 0 6px rgba(0, 229, 255, 0.3),
+    0 0 30px rgba(0, 229, 255, 0.5),
+    inset 0 0 20px rgba(0, 229, 255, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: avatarPulse 3s ease-in-out infinite !important;
+  width: 90px !important;
+  height: 90px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+@keyframes avatarPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 0 3px rgba(0, 229, 255, 0.6),
+      0 0 0 6px rgba(0, 229, 255, 0.3),
+      0 0 30px rgba(0, 229, 255, 0.5);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 5px rgba(0, 229, 255, 0.8),
+      0 0 0 10px rgba(0, 229, 255, 0.4),
+      0 0 50px rgba(0, 229, 255, 0.7);
+  }
+}
+
+#cases .avatar:hover {
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 
+    0 0 0 5px rgba(45, 255, 200, 0.8),
+    0 0 0 10px rgba(45, 255, 200, 0.4),
+    0 0 60px rgba(45, 255, 200, 0.8) !important;
+}
+
+/* Conteúdo dos cards com tipografia futurista */
+#cases .card .p-6 {
+  padding: 2rem !important;
+  position: relative !important;
+  z-index: 2 !important;
+  background: linear-gradient(180deg, 
+    rgba(10, 25, 45, 0.1) 0%, 
+    rgba(15, 30, 55, 0.3) 100%) !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+/* Títulos com efeito neon */
+#cases .card h3 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1.25rem !important;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(0, 229, 255, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.5) !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 0.75rem !important;
+  position: relative !important;
+  z-index: 2 !important;
+  animation: textGlow 4s ease-in-out infinite !important;
+}
+
+@keyframes textGlow {
+  0%, 100% { 
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.5),
+      0 0 20px rgba(0, 229, 255, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  50% { 
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 0.7),
+      0 0 30px rgba(0, 229, 255, 0.5),
+      0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Especialidades com efeito holográfico */
+#cases .card span.text-metta-cyan {
+  background: linear-gradient(90deg, #00e5ff, #2dffc8, #00e5ff) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  animation: holographicText 3s linear infinite !important;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4)) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  margin-bottom: 1rem !important;
+  display: block !important;
+}
+
+@keyframes holographicText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Texto descritivo com maior legibilidade */
+#cases .card p {
+  color: #e8f4fd !important;
+  font-size: 0.925rem !important;
+  line-height: 1.7 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.015em !important;
+}
+
+/* Estatísticas com efeito ciberpunk */
+#cases .card span.font-bold.text-metta-cyan {
+  background: linear-gradient(45deg, #00e5ff, #2dffc8, #00e5ff, #1e88e5) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-weight: 900 !important;
+  font-size: 0.95rem !important;
+  animation: statisticGlow 2s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6)) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+@keyframes statisticGlow {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 15px rgba(45, 255, 200, 0.8));
+  }
+}
+
+/* Título da seção com efeito épico */
+#cases h2 {
+  background: linear-gradient(135deg, 
+    #ffffff 0%, 
+    #00e5ff 25%,
+    #ffffff 50%,
+    #2dffc8 75%,
+    #ffffff 100%) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  animation: titleEpic 6s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.3)) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 3rem !important;
+}
+
+@keyframes titleEpic {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Badge da seção com design futurista */
+#cases .badge-teal {
+  background: linear-gradient(135deg, 
+    rgba(0, 229, 255, 0.2) 0%, 
+    rgba(45, 255, 200, 0.15) 50%,
+    rgba(0, 229, 255, 0.2) 100%) !important;
+  border: 2px solid rgba(0, 229, 255, 0.6) !important;
+  color: #00e5ff !important;
+  font-weight: 800 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 50px !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 
+    0 0 20px rgba(0, 229, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  animation: badgeFloat 4s ease-in-out infinite !important;
+  margin-bottom: 2rem !important;
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-5px) scale(1.05); }
+}
+
+/* Efeitos de partículas nos cards */
+#cases .card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300e5ff' fill-opacity='0.05'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3Ccircle cx='17' cy='7' r='1'/%3E%3Ccircle cx='7' cy='17' r='1'/%3E%3C/g%3E%3C/svg%3E") !important;
+  z-index: 1 !important;
+  animation: particleFloat 15s linear infinite !important;
+  opacity: 0.6 !important;
+}
+
+@keyframes particleFloat {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-20px, -20px); }
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+  #cases .flex-col.md\\:flex-row {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  #cases h2 {
+    font-size: 2rem !important;
+  }
+  
+  #cases .card {
+    transform: none !important;
+  }
 } 
+
+/* Títulos com efeito neon suavizado */
+#cases .card h3 {
+  color: #e2e8f0 !important;
+  font-weight: 800 !important;
+  font-size: 1.25rem !important;
+  text-shadow: 
+    0 0 8px rgba(226, 232, 240, 0.3),
+    0 0 15px rgba(0, 229, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.5) !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 0.75rem !important;
+  position: relative !important;
+  z-index: 2 !important;
+  animation: textGlowSoft 4s ease-in-out infinite !important;
+}
+
+@keyframes textGlowSoft {
+  0%, 100% { 
+    text-shadow: 
+      0 0 8px rgba(226, 232, 240, 0.3),
+      0 0 15px rgba(0, 229, 255, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  50% { 
+    text-shadow: 
+      0 0 12px rgba(226, 232, 240, 0.4),
+      0 0 20px rgba(0, 229, 255, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Avatar com efeito neon suavizado */
+#cases .avatar {
+  border: 4px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 
+    0 0 0 3px rgba(0, 229, 255, 0.5),
+    0 0 0 6px rgba(0, 229, 255, 0.2),
+    0 0 25px rgba(0, 229, 255, 0.4),
+    inset 0 0 15px rgba(0, 229, 255, 0.08) !important;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: avatarPulseSoft 3s ease-in-out infinite !important;
+  width: 90px !important;
+  height: 90px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+@keyframes avatarPulseSoft {
+  0%, 100% { 
+    box-shadow: 
+      0 0 0 3px rgba(0, 229, 255, 0.5),
+      0 0 0 6px rgba(0, 229, 255, 0.2),
+      0 0 25px rgba(0, 229, 255, 0.4);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 4px rgba(0, 229, 255, 0.6),
+      0 0 0 8px rgba(0, 229, 255, 0.3),
+      0 0 35px rgba(0, 229, 255, 0.5);
+  }
+}
+
+#cases .avatar:hover {
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 
+    0 0 0 4px rgba(45, 255, 200, 0.6),
+    0 0 0 8px rgba(45, 255, 200, 0.3),
+    0 0 45px rgba(45, 255, 200, 0.6) !important;
+}
+
+/* Título da seção com cores mais suaves */
+#cases h2 {
+  background: linear-gradient(135deg, 
+    #e2e8f0 0%, 
+    #00e5ff 25%,
+    #cbd5e1 50%,
+    #2dffc8 75%,
+    #e2e8f0 100%) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  animation: titleEpicSoft 6s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.2)) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 3rem !important;
+}
+
+@keyframes titleEpicSoft {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Cards com sombras menos intensas */
+#cases .card {
+  background: linear-gradient(145deg, 
+    rgba(10, 25, 45, 0.95) 0%, 
+    rgba(15, 30, 55, 0.98) 50%,
+    rgba(8, 20, 40, 0.95) 100%) !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(0, 229, 255, 0.08),
+    inset 0 1px 0 rgba(226, 232, 240, 0.06),
+    inset 0 -1px 0 rgba(0, 229, 255, 0.15) !important;
+  border-radius: 20px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(20px) !important;
+  transform: rotateY(5deg) rotateX(2deg) !important;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1) !important;
+}
+
+#cases .card:hover {
+  transform: rotateY(0deg) rotateX(0deg) translateY(-15px) scale(1.02) !important;
+  box-shadow: 
+    0 35px 70px -15px rgba(0, 0, 0, 0.7),
+    0 0 45px rgba(0, 229, 255, 0.2),
+    inset 0 1px 0 rgba(226, 232, 240, 0.12),
+    inset 0 -1px 0 rgba(0, 229, 255, 0.25) !important;
+}
+
+/* Badge com cores mais equilibradas */
+#cases .badge-teal {
+  background: linear-gradient(135deg, 
+    rgba(0, 229, 255, 0.15) 0%, 
+    rgba(45, 255, 200, 0.12) 50%,
+    rgba(0, 229, 255, 0.15) 100%) !important;
+  border: 2px solid rgba(0, 229, 255, 0.4) !important;
+  color: #00e5ff !important;
+  font-weight: 800 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 50px !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 
+    0 0 15px rgba(0, 229, 255, 0.2),
+    inset 0 1px 0 rgba(226, 232, 240, 0.1) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  animation: badgeFloatSoft 4s ease-in-out infinite !important;
+  margin-bottom: 2rem !important;
+}
+
+@keyframes badgeFloatSoft {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-3px) scale(1.02); }
+}
+
+/* Títulos com efeito muito sutil */
+#cases .card h3 {
+  color: #cbd5e1 !important;
+  font-weight: 700 !important;
+  font-size: 1.25rem !important;
+  text-shadow: 
+    0 0 3px rgba(203, 213, 225, 0.15),
+    0 0 6px rgba(0, 229, 255, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.4) !important;
+  letter-spacing: 0.03em !important;
+  margin-bottom: 0.75rem !important;
+  position: relative !important;
+  z-index: 2 !important;
+  animation: textGlowMinimal 6s ease-in-out infinite !important;
+}
+
+@keyframes textGlowMinimal {
+  0%, 100% { 
+    text-shadow: 
+      0 0 3px rgba(203, 213, 225, 0.15),
+      0 0 6px rgba(0, 229, 255, 0.08),
+      0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  50% { 
+    text-shadow: 
+      0 0 4px rgba(203, 213, 225, 0.2),
+      0 0 8px rgba(0, 229, 255, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Avatar com efeito muito sutil */
+#cases .avatar {
+  border: 3px solid rgba(203, 213, 225, 0.6) !important;
+  box-shadow: 
+    0 0 0 2px rgba(0, 229, 255, 0.25),
+    0 0 0 4px rgba(0, 229, 255, 0.1),
+    0 0 12px rgba(0, 229, 255, 0.2),
+    inset 0 0 8px rgba(0, 229, 255, 0.04) !important;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: avatarPulseMinimal 4s ease-in-out infinite !important;
+  width: 90px !important;
+  height: 90px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+@keyframes avatarPulseMinimal {
+  0%, 100% { 
+    box-shadow: 
+      0 0 0 2px rgba(0, 229, 255, 0.25),
+      0 0 0 4px rgba(0, 229, 255, 0.1),
+      0 0 12px rgba(0, 229, 255, 0.2);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 2px rgba(0, 229, 255, 0.3),
+      0 0 0 5px rgba(0, 229, 255, 0.15),
+      0 0 16px rgba(0, 229, 255, 0.25);
+  }
+}
+
+#cases .avatar:hover {
+  transform: scale(1.05) rotate(2deg) !important;
+  box-shadow: 
+    0 0 0 2px rgba(45, 255, 200, 0.35),
+    0 0 0 5px rgba(45, 255, 200, 0.15),
+    0 0 20px rgba(45, 255, 200, 0.3) !important;
+}
+
+/* Título da seção com cores muito neutras */
+#cases h2 {
+  background: linear-gradient(135deg, 
+    #cbd5e1 0%, 
+    #94a3b8 25%,
+    #e2e8f0 50%,
+    #94a3b8 75%,
+    #cbd5e1 100%) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 3rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  animation: titleNeutral 8s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.1)) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 3rem !important;
+}
+
+@keyframes titleNeutral {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Cards com visual muito sutil */
+#cases .card {
+  background: linear-gradient(145deg, 
+    rgba(10, 25, 45, 0.9) 0%, 
+    rgba(15, 30, 55, 0.92) 50%,
+    rgba(8, 20, 40, 0.9) 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.15) !important;
+  background-clip: padding-box !important;
+  box-shadow: 
+    0 20px 40px -12px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(0, 229, 255, 0.04),
+    inset 0 1px 0 rgba(203, 213, 225, 0.03),
+    inset 0 -1px 0 rgba(0, 229, 255, 0.08) !important;
+  border-radius: 16px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(15px) !important;
+  transform: rotateY(2deg) rotateX(1deg) !important;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1) !important;
+}
+
+#cases .card:hover {
+  transform: rotateY(0deg) rotateX(0deg) translateY(-8px) scale(1.01) !important;
+  box-shadow: 
+    0 25px 50px -15px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(0, 229, 255, 0.08),
+    inset 0 1px 0 rgba(203, 213, 225, 0.06),
+    inset 0 -1px 0 rgba(0, 229, 255, 0.12) !important;
+  border-color: rgba(148, 163, 184, 0.25) !important;
+}
+
+/* Badge com design muito sutil */
+#cases .badge-teal {
+  background: linear-gradient(135deg, 
+    rgba(148, 163, 184, 0.12) 0%, 
+    rgba(203, 213, 225, 0.08) 50%,
+    rgba(148, 163, 184, 0.12) 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: 0.4rem 1.2rem !important;
+  border-radius: 50px !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 
+    0 0 8px rgba(148, 163, 184, 0.1),
+    inset 0 1px 0 rgba(203, 213, 225, 0.05) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  animation: badgeFloatMinimal 6s ease-in-out infinite !important;
+  margin-bottom: 2rem !important;
+}
+
+@keyframes badgeFloatMinimal {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-2px) scale(1.01); }
+}
+
+/* Especialidades com efeito muito sutil */
+#cases .card span.text-metta-cyan {
+  background: linear-gradient(90deg, #94a3b8, #cbd5e1, #94a3b8) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  animation: holographicTextSubtle 4s linear infinite !important;
+  filter: drop-shadow(0 0 3px rgba(148, 163, 184, 0.2)) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  margin-bottom: 1rem !important;
+  display: block !important;
+}
+
+@keyframes holographicTextSubtle {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Estatísticas com efeito muito sutil */
+#cases .card span.font-bold.text-metta-cyan {
+  background: linear-gradient(45deg, #94a3b8, #cbd5e1, #94a3b8) !important;
+  background-size: 200% 200% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  animation: statisticGlowSubtle 3s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 4px rgba(148, 163, 184, 0.3)) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+}
+
+@keyframes statisticGlowSubtle {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 4px rgba(148, 163, 184, 0.3));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.4));
+  }
+}
+
+/* Background da seção muito sutil */
+#cases {
+  background: linear-gradient(135deg, 
+    #0a0e1a 0%, 
+    #0f1419 25%,
+    #0c1116 50%,
+    #10171d 75%,
+    #0a0e1a 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 5rem 1rem !important;
+}
+
+/* Efeito de fundo muito sutil */
+#cases::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(148, 163, 184, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(203, 213, 225, 0.02) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.02) 0%, transparent 60%);
+  z-index: 0;
+  animation: backgroundPulseSubtle 12s ease-in-out infinite;
+}
+
+@keyframes backgroundPulseSubtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Remover grid pattern muito visível */
+#cases::after {
+  display: none;
+}
+
+/* Gradiente dos avatares mais sutil */
+#cases .gradient-blue {
+  background: linear-gradient(135deg, 
+    #475569 0%, 
+    #64748b 25%,
+    #475569 50%,
+    #64748b 75%,
+    #475569 100%) !important;
+  background-size: 200% 200% !important;
+  animation: holographicShiftSubtle 8s ease-in-out infinite !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 16px 16px 0 0 !important;
+  height: 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@keyframes holographicShiftSubtle {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Efeito de borda muito sutil nos cards */
+#cases .card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, 
+    rgba(148, 163, 184, 0.2) 0%, 
+    rgba(203, 213, 225, 0.1) 50%, 
+    rgba(148, 163, 184, 0.2) 100%);
+  border-radius: 16px;
+  z-index: -1;
+  background-size: 300% 300%;
+  animation: borderGlowSubtle 6s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#cases .card:hover::before {
+  opacity: 1;
+}
+
+@keyframes borderGlowSubtle {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Títulos com efeito equilibrado */
+#cases .card h3 {
+  color: #e2e8f0 !important;
+  font-weight: 700 !important;
+  font-size: 1.25rem !important;
+  text-shadow: 
+    0 0 4px rgba(226, 232, 240, 0.2),
+    0 0 8px rgba(56, 189, 248, 0.15),
+    0 1px 2px rgba(0, 0, 0, 0.4) !important;
+  letter-spacing: 0.03em !important;
+  margin-bottom: 0.75rem !important;
+  position: relative !important;
+  z-index: 2 !important;
+  animation: textGlowBalanced 6s ease-in-out infinite !important;
+}
+
+@keyframes textGlowBalanced {
+  0%, 100% { 
+    text-shadow: 
+      0 0 4px rgba(226, 232, 240, 0.2),
+      0 0 8px rgba(56, 189, 248, 0.15),
+      0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  50% { 
+    text-shadow: 
+      0 0 6px rgba(226, 232, 240, 0.3),
+      0 0 12px rgba(56, 189, 248, 0.2),
+      0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Avatar com efeito suave mas vivo */
+#cases .avatar {
+  border: 3px solid rgba(226, 232, 240, 0.7) !important;
+  box-shadow: 
+    0 0 0 2px rgba(56, 189, 248, 0.3),
+    0 0 0 4px rgba(56, 189, 248, 0.15),
+    0 0 15px rgba(56, 189, 248, 0.25),
+    inset 0 0 10px rgba(56, 189, 248, 0.06) !important;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: avatarPulseBalanced 4s ease-in-out infinite !important;
+  width: 90px !important;
+  height: 90px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+@keyframes avatarPulseBalanced {
+  0%, 100% { 
+    box-shadow: 
+      0 0 0 2px rgba(56, 189, 248, 0.3),
+      0 0 0 4px rgba(56, 189, 248, 0.15),
+      0 0 15px rgba(56, 189, 248, 0.25);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 3px rgba(56, 189, 248, 0.4),
+      0 0 0 6px rgba(56, 189, 248, 0.2),
+      0 0 20px rgba(56, 189, 248, 0.35);
+  }
+}
+
+#cases .avatar:hover {
+  transform: scale(1.06) rotate(3deg) !important;
+  box-shadow: 
+    0 0 0 3px rgba(34, 211, 238, 0.5),
+    0 0 0 6px rgba(34, 211, 238, 0.25),
+    0 0 25px rgba(34, 211, 238, 0.4) !important;
+}
+
+/* Título da seção com cores vivas mas elegantes */
+#cases h2 {
+  background: linear-gradient(135deg, 
+    #e2e8f0 0%, 
+    #7dd3fc 25%,
+    #f1f5f9 50%,
+    #38bdf8 75%,
+    #e2e8f0 100%) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 3rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  animation: titleBalanced 8s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.15)) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 3rem !important;
+}
+
+@keyframes titleBalanced {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Cards com visual equilibrado */
+#cases .card {
+  background: linear-gradient(145deg, 
+    rgba(10, 25, 45, 0.92) 0%, 
+    rgba(15, 30, 55, 0.94) 50%,
+    rgba(8, 20, 40, 0.92) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  background-clip: padding-box !important;
+  box-shadow: 
+    0 20px 40px -12px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(56, 189, 248, 0.08),
+    inset 0 1px 0 rgba(226, 232, 240, 0.05),
+    inset 0 -1px 0 rgba(56, 189, 248, 0.12) !important;
+  border-radius: 16px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(16px) !important;
+  transform: rotateY(2deg) rotateX(1deg) !important;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1) !important;
+}
+
+#cases .card:hover {
+  transform: rotateY(0deg) rotateX(0deg) translateY(-10px) scale(1.015) !important;
+  box-shadow: 
+    0 25px 50px -15px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(56, 189, 248, 0.12),
+    inset 0 1px 0 rgba(226, 232, 240, 0.08),
+    inset 0 -1px 0 rgba(56, 189, 248, 0.18) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Badge com design equilibrado */
+#cases .badge-teal {
+  background: linear-gradient(135deg, 
+    rgba(56, 189, 248, 0.15) 0%, 
+    rgba(125, 211, 252, 0.12) 50%,
+    rgba(56, 189, 248, 0.15) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  color: #7dd3fc !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: 0.4rem 1.2rem !important;
+  border-radius: 50px !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 
+    0 0 12px rgba(56, 189, 248, 0.15),
+    inset 0 1px 0 rgba(226, 232, 240, 0.08) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  animation: badgeFloatBalanced 6s ease-in-out infinite !important;
+  margin-bottom: 2rem !important;
+}
+
+@keyframes badgeFloatBalanced {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-3px) scale(1.02); }
+}
+
+/* Especialidades com efeito elegante */
+#cases .card span.text-metta-cyan {
+  background: linear-gradient(90deg, #7dd3fc, #e2e8f0, #38bdf8) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  animation: holographicTextBalanced 4s linear infinite !important;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.25)) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  margin-bottom: 1rem !important;
+  display: block !important;
+}
+
+@keyframes holographicTextBalanced {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Estatísticas com destaque equilibrado */
+#cases .card span.font-bold.text-metta-cyan {
+  background: linear-gradient(45deg, #38bdf8, #e2e8f0, #7dd3fc) !important;
+  background-size: 200% 200% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  animation: statisticGlowBalanced 3s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.35)) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+}
+
+@keyframes statisticGlowBalanced {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.35));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 7px rgba(56, 189, 248, 0.45));
+  }
+}
+
+/* Background da seção com toque sutil de cor */
+#cases::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(125, 211, 252, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
+  z-index: 0;
+  animation: backgroundPulseBalanced 12s ease-in-out infinite;
+}
+
+@keyframes backgroundPulseBalanced {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+/* Gradiente dos avatares equilibrado */
+#cases .gradient-blue {
+  background: linear-gradient(135deg, 
+    #475569 0%, 
+    #64748b 25%,
+    #7dd3fc 50%,
+    #64748b 75%,
+    #475569 100%) !important;
+  background-size: 200% 200% !important;
+  animation: holographicShiftBalanced 8s ease-in-out infinite !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 16px 16px 0 0 !important;
+  height: 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@keyframes holographicShiftBalanced {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Efeito de borda equilibrado nos cards */
+#cases .card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, 
+    rgba(56, 189, 248, 0.25) 0%, 
+    rgba(125, 211, 252, 0.15) 50%, 
+    rgba(56, 189, 248, 0.25) 100%);
+  border-radius: 16px;
+  z-index: -1;
+  background-size: 300% 300%;
+  animation: borderGlowBalanced 6s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#cases .card:hover::before {
+  opacity: 1;
+}
+
+@keyframes borderGlowBalanced {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ====== UNIFICAÇÃO DAS SEÇÕES CASES + CTA ====== */
+
+/* Seção Cases de Sucesso - parte superior unificada */
+#cases {
+  background: linear-gradient(135deg, 
+    #0a0e1a 0%, 
+    #0f1419 25%,
+    #0c1116 50%,
+    #10171d 75%,
+    #0a0e1a 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 5rem 1rem 3rem 1rem !important; /* Reduzido padding inferior */
+}
+
+/* Seção CTA - parte inferior unificada */
+.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 {
+  background: linear-gradient(135deg, 
+    #0a0e1a 0%, 
+    #0f1419 25%,
+    #0c1116 50%,
+    #10171d 75%,
+    #0a0e1a 100%) !important;
+  padding: 0 1rem 5rem 1rem !important; /* Removido padding superior */
+  margin-top: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Background unificado para ambas as seções */
+.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(125, 211, 252, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
+  z-index: 0;
+  animation: backgroundPulseBalanced 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Card CTA com design harmonizado */
+.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 .w-full.max-w-4xl {
+  background: linear-gradient(145deg, 
+    rgba(10, 25, 45, 0.92) 0%, 
+    rgba(15, 30, 55, 0.94) 50%,
+    rgba(8, 20, 40, 0.92) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+  box-shadow: 
+    0 20px 40px -12px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(56, 189, 248, 0.08),
+    inset 0 1px 0 rgba(226, 232, 240, 0.05),
+    inset 0 -1px 0 rgba(56, 189, 248, 0.12) !important;
+  border-radius: 16px !important;
+  position: relative !important;
+  z-index: 2 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Efeito hover no card CTA */
+.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 .w-full.max-w-4xl:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 
+    0 25px 50px -15px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(56, 189, 248, 0.12),
+    inset 0 1px 0 rgba(226, 232, 240, 0.08),
+    inset 0 -1px 0 rgba(56, 189, 248, 0.18) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Título do CTA harmonizado */
+.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 h2 {
+  color: #e2e8f0 !important;
+  text-shadow: 
+    0 0 4px rgba(226, 232, 240, 0.2),
+    0 0 8px rgba(56, 189, 248, 0.15),
+    0 1px 2px rgba(0, 0, 0, 0.4) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Texto destacado no CTA harmonizado */
+.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 span.text-metta-cyan {
+  background: linear-gradient(90deg, #7dd3fc, #e2e8f0, #38bdf8) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: holographicTextBalanced 4s linear infinite !important;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.25)) !important;
+}
+
+/* Parágrafo do CTA */
+.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 p {
+  color: #cbd5e1 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Linha divisória sutil entre as partes */
+#cases::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(56, 189, 248, 0.15), 
+    transparent);
+  z-index: 1;
+}
+
+/* Garantir continuidade visual */
+.section.flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 {
+  margin-top: 0 !important;
+  border-top: none !important;
+}
+
+/* Ajustar espaçamento entre elementos na seção unificada */
+#cases .flex-col.md\\:flex-row {
+  margin-bottom: 4rem !important;
+}
+
+/* Responsividade para a seção unificada */
+@media (max-width: 768px) {
+  #cases {
+    padding: 3rem 1rem 2rem 1rem !important;
+  }
+  
+  .flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 {
+    padding: 0 1rem 3rem 1rem !important;
+  }
+  
+  #cases .flex-col.md\\:flex-row {
+    margin-bottom: 3rem !important;
+  }
+}
+
+/* ====== UNIFICAÇÃO COMPLETA DAS SEÇÕES CASES + CTA ====== */
+
+/* Wrapper unificado para ambas as seções */
+#cases-cta-section {
+  background: linear-gradient(180deg, 
+    #0a0e1a 0%, 
+    #0f1419 15%,
+    #0c1116 30%,
+    #0f1419 50%,
+    #0c1116 70%,
+    #0f1419 85%,
+    #0a0e1a 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* Background animado único para toda a seção unificada */
+#cases-cta-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(125, 211, 252, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(56, 189, 248, 0.04) 0%, transparent 70%);
+  z-index: 0;
+  animation: unifiedPulse 15s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes unifiedPulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* Grid pattern único para todo o wrapper */
+#cases-cta-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(56, 189, 248, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+  opacity: 0.3;
+  animation: gridSlide 30s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gridSlide {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Remover backgrounds individuais das seções internas */
+#cases-cta-section #cases {
+  background: none !important;
+  padding: 5rem 1rem 2rem 1rem !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+#cases-cta-section #cases::before,
+#cases-cta-section #cases::after {
+  display: none !important;
+}
+
+/* Seção CTA sem background próprio */
+#cases-cta-section .flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 {
+  background: none !important;
+  padding: 1rem 1rem 5rem 1rem !important;
+  margin-top: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+#cases-cta-section .flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16::before {
+  display: none !important;
+}
+
+/* Elemento de conexão visual entre as duas partes */
+#cases-cta-section #cases::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 60px;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Cards de cases com efeito flutuante unificado */
+#cases-cta-section .card {
+  background: linear-gradient(145deg, 
+    rgba(10, 25, 45, 0.85) 0%, 
+    rgba(15, 30, 55, 0.9) 50%,
+    rgba(8, 20, 40, 0.85) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* CTA card com mesmo estilo visual */
+#cases-cta-section .w-full.max-w-4xl {
+  background: linear-gradient(145deg, 
+    rgba(10, 25, 45, 0.85) 0%, 
+    rgba(15, 30, 55, 0.9) 50%,
+    rgba(8, 20, 40, 0.85) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Partículas flutuantes por toda a seção unificada */
+.unified-section {
+  position: relative;
+}
+
+.unified-section::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 10%, rgba(56, 189, 248, 0.15) 0, transparent 2px),
+    radial-gradient(circle at 80% 80%, rgba(125, 211, 252, 0.15) 0, transparent 2px),
+    radial-gradient(circle at 40% 40%, rgba(56, 189, 248, 0.15) 0, transparent 2px),
+    radial-gradient(circle at 90% 10%, rgba(125, 211, 252, 0.15) 0, transparent 2px),
+    radial-gradient(circle at 10% 90%, rgba(56, 189, 248, 0.15) 0, transparent 2px);
+  background-size: 600px 600px, 800px 800px, 700px 700px, 900px 900px, 500px 500px;
+  background-position: 0% 0%, 10% 10%, 20% 50%, 30% 30%, 40% 80%;
+  animation: floatingParticles 40s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes floatingParticles {
+  0% {
+    background-position: 0% 0%, 10% 10%, 20% 50%, 30% 30%, 40% 80%;
+  }
+  100% {
+    background-position: 100% 100%, 90% 90%, 80% 50%, 70% 70%, 60% 20%;
+  }
+}
+
+/* Linha de conexão fluida entre seções */
+#cases-cta-section #cases {
+  border-bottom: none !important;
+}
+
+/* Fluxo contínuo de elementos */
+#cases-cta-section .flex-col.md\\:flex-row {
+  margin-bottom: 3rem !important;
+}
+
+/* Responsividade para a seção unificada */
+@media (max-width: 768px) {
+  #cases-cta-section #cases {
+    padding: 3rem 1rem 1.5rem 1rem !important;
+  }
+  
+  #cases-cta-section .flex.flex-col.items-center.justify-center.px-4.sm\\:px-6.py-16 {
+    padding: 0.5rem 1rem 3rem 1rem !important;
+  }
+}
+
+/* Texto "aceleradores de clínicas" com cor mais clara */
+#cases-cta-section .w-full.max-w-4xl span.text-metta-cyan.animate-shimmer {
+  background: linear-gradient(90deg, #bfdbfe, #f0f9ff, #dbeafe) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: holographicTextLight 4s linear infinite !important;
+  filter: drop-shadow(0 0 6px rgba(147, 197, 253, 0.4)) !important;
+  font-weight: 700 !important;
+}
+
+@keyframes holographicTextLight {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ====== TRANSIÇÃO SUAVE ENTRE HERO E CASES (CORRIGIDA) ====== */
+
+/* Criar um wrapper para elementos de transição */
+.hero-section {
+  position: relative !important;
+  padding-bottom: 8rem !important;
+}
+
+/* Gradiente de fade suave no final do Hero */
+.hero-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(180deg, 
+    transparent 0%,
+    rgba(10, 14, 26, 0.4) 50%,
+    rgba(10, 14, 26, 0.8) 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Elemento decorativo central */
+.hero-form-container::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  animation: pulseConnection 3s ease-in-out infinite;
+  z-index: 20;
+}
+
+/* Linha vertical conectora */
+.hero-form-container::before {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(180deg, 
+    rgba(56, 189, 248, 0.5) 0%,
+    rgba(56, 189, 248, 0.3) 50%,
+    transparent 100%);
+  z-index: 19;
+  animation: lineFlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseConnection {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.3);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 0 20px rgba(56, 189, 248, 0);
+  }
+}
+
+@keyframes lineFlow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Ajuste da seção Cases para suave entrada */
+#cases-cta-section {
+  position: relative !important;
+  margin-top: -100px !important;
+  padding-top: 100px !important;
+  background: linear-gradient(180deg, 
+    transparent 0%,
+    #060d14 5%,
+    #0a0e1a 15%, 
+    #0f1419 30%,
+    #0c1116 50%,
+    #0f1419 70%,
+    #0a0e1a 85%,
+    #060d14 100%) !important;
+}
+
+/* Remover conflitos anteriores */
+#cases-cta-section::before {
+  display: none !important;
+}
+
+/* Linha decorativa no topo dos Cases */
+#cases::before {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(56, 189, 248, 0.2) 20%,
+    rgba(56, 189, 248, 0.3) 50%,
+    rgba(56, 189, 248, 0.2) 80%,
+    transparent 100%);
+  animation: lineGlow 4s ease-in-out infinite;
+  z-index: 10;
+}
+
+/* Dots decorativos na transição */
+.unified-section::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 50%;
+  box-shadow: 
+    -20px 0 0 0 rgba(56, 189, 248, 0.3),
+    20px 0 0 0 rgba(56, 189, 248, 0.3);
+  animation: dotsPulse 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes dotsPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Wave SVG pattern para transição suave */
+.hero-container {
+  position: relative;
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-bottom: 6rem !important;
+  }
+  
+  #cases-cta-section {
+    margin-top: -60px !important;
+    padding-top: 60px !important;
+  }
+  
+  .hero-form-container::after {
+    bottom: -60px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .hero-form-container::before {
+    bottom: -90px;
+    height: 70px;
+  }
+}
+
+.sobre-nos-section {
+  background: linear-gradient(120deg, #0a1622 0%, #101a28 100%);
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* Manter z-index para sobreposição correta */
+  /* margin-top: -60px; /* Sobrepor ligeiramente a seção anterior */
+  /* padding-top: 60px; /* Compensar o margin-top */
+}
+
+.sobre-nos-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(30, 136, 229, 0.10) 0%, transparent 60%),
+    radial-gradient(circle at 10% 90%, rgba(0, 191, 165, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 2;
+  animation: sobreNosPulse 8s ease-in-out infinite;
+}
+
+@keyframes sobreNosPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.sobre-nos-section .card, .sobre-nos-section .faq-item {
+  background: rgba(10, 22, 34, 0.85);
+  border: 1px solid rgba(30, 136, 229, 0.10);
+  box-shadow: 0 4px 24px -8px rgba(30, 136, 229, 0.10);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.sobre-nos-section .faq-item:hover {
+  border-color: var(--metta-blue);
+  box-shadow: 0 8px 32px -8px rgba(30, 136, 229, 0.18);
+}
+
+.sobre-nos-section .faq-question {
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.sobre-nos-section .faq-answer {
+  background: transparent;
+  border-top: 1px solid rgba(30, 136, 229, 0.08);
+}
+
+.sobre-nos-section img {
+  object-fit: contain !important; /* Garantir que contain seja aplicado */
+  max-height: 450px;
+  width: 100%; /* Fazer a imagem ocupar a largura do container */
+  height: auto; /* Manter proporção */
+  display: block; /* Evitar espaços extras abaixo da imagem */
+  margin-left: auto; /* Centralizar se necessário */
+  margin-right: auto; /* Centralizar se necessário */
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Nova abordagem para transição suave */
+#depoimentos + .sobre-nos-section {
+  margin-top: -1px; /* Pequena sobreposição para evitar linhas finas entre seções */
+}
+
+.sobre-nos-section {
+  /* ... estilos existentes ... */
+  padding-top: 6rem; /* Aumentar padding para criar espaço para a subida */
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%); /* Corte diagonal inicial */
+  animation: revealSection 1s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes revealSection {
+  from {
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Para acionar a animação quando a seção estiver visível */
+.sobre-nos-section.animate-visible {
+  animation-name: revealSection; 
+}
+
+/* Ajustes responsivos para a imagem da seção Sobre Nós */
+@media (max-width: 767px) { /* md breakpoint do Tailwind */
+  .sobre-nos-section .sobre-nos-image-mobile {
+    max-height: 280px; /* Altura máxima para a imagem no mobile */
+    width: 100%;
+    object-fit: contain; /* Garantir que a imagem caiba sem cortar */
+    margin-top: 1rem; /* Espaço acima da imagem mobile */
+    margin-bottom: 1.5rem; /* Espaço abaixo da imagem mobile */
+  }
+
+  .sobre-nos-section .flex-1.order-2 { /* Se refere ao h2 */
+    /* margin-top: 1.5rem; // Removido, pois a imagem agora está no fluxo do flex-col */
+  }
+  .sobre-nos-section .order-4 { /* Se refere ao parágrafo após a imagem mobile */
+    margin-top: 0; /* Remover margem superior extra se houver */
+  }
+}
+
+/* Estilos para a imagem de desktop (se necessário, para sobrescrever algo) */
+.sobre-nos-section .sobre-nos-image-desktop {
+  object-fit: contain !important;
+  max-height: 450px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
