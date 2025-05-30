@@ -39,6 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializa o carrossel de depoimentos
     initTestimonialCarousel();
     
+    // INÍCIO: Chamada para o novo carrossel de Cases de Sucesso
+    initCasesCarousel();
+    // FIM: Chamada para o novo carrossel de Cases de Sucesso
+    
     // Cria partículas flutuantes para o hero
     createFloatingParticles();
 
@@ -57,8 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
       question.addEventListener('click', () => {
         const isOpen = answer.classList.contains('open');
         
-        // Fecha todos os outros answers abertos para um efeito "accordion"
-        // Comente ou remova o bloco abaixo se quiser que múltiplos possam estar abertos
         document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
           if (openAnswer !== answer) {
             openAnswer.classList.remove('open');
@@ -78,6 +80,23 @@ document.addEventListener('DOMContentLoaded', function() {
           answer.style.maxHeight = '0px';
         }
       });
+    });
+
+    // Anima os cards em sequência
+    animateSequence('.flex-col.md\:flex-row', '.card', 150);
+    
+    // Anima os cards de serviços com atraso maior
+    animateSequence('#servicos .flex-col.md\:flex-row', '.service-card', 200);
+    
+    // Adiciona classe de paralaxe a elementos selecionados - mantém o efeito parallax
+    document.querySelectorAll('.hero-section h1, .section > img').forEach((el, index) => {
+        el.classList.add('parallax');
+        el.setAttribute('data-speed', (0.05 + (index * 0.02)).toString());
+    });
+    
+    // Adiciona classe de destaque aos cards
+    document.querySelectorAll('.card').forEach(card => {
+        card.classList.add('highlight-on-view');
     });
 });
 
@@ -339,6 +358,202 @@ function initTestimonialCarousel() {
     updateCarousel();
 }
 
+// INÍCIO: Nova função para o Carrossel de Cases de Sucesso
+function initCasesCarousel() {
+    const carousel = document.querySelector('.cases-carousel');
+    if (!carousel) {
+        console.warn("Cases carousel (selector: .cases-carousel) not found.");
+        return;
+    }
+    
+    const container = carousel.querySelector('.cases-container');
+    const slides = Array.from(carousel.querySelectorAll('.case-slide'));
+    const prevBtn = carousel.querySelector('.cases-prev');
+    const nextBtn = carousel.querySelector('.cases-next');
+    const dotContainer = carousel.querySelector('.cases-carousel-controls');
+
+    if (!container || slides.length === 0) {
+        console.warn('Cases carousel: Container or slides not found.');
+        return;
+    }
+
+    let currentIndex = 0;
+    let itemsPerPage = 1;
+    const totalSlides = slides.length;
+    const slideDisplayWidthPercentDesktop = 70; 
+    const slideMarginPxDesktop = 15;          
+
+    function updateItemsPerPageAndSizing() {
+        const isMobile = window.innerWidth < 768;
+
+        slides.forEach(slide => {
+            if (isMobile) {
+                slide.style.flexBasis = '100%';
+                slide.style.minWidth = '100%';
+                slide.style.margin = '0';
+                slide.style.padding = '0 0.75rem'; // Mantém o padding para mobile
+            } else { // Desktop
+                slide.style.flexBasis = `${slideDisplayWidthPercentDesktop}%`;
+                slide.style.minWidth = `${slideDisplayWidthPercentDesktop}%`;
+                slide.style.margin = `0 ${slideMarginPxDesktop}px`;
+                slide.style.padding = '0'; // Remove padding do .case-slide no desktop
+            }
+        });
+        currentIndex = Math.min(currentIndex, Math.max(0, totalSlides - 1));
+    }
+
+    function createDots() {
+        if (!dotContainer) return;
+        dotContainer.innerHTML = '';
+        // Math.max(0, totalSlides - itemsPerPage + 1) se torna totalSlides se itemsPerPage é 1 e queremos um dot por slide.
+        const numDots = totalSlides; 
+
+        if (numDots <= 1) { 
+            dotContainer.style.display = 'none';
+            return;
+        }
+        dotContainer.style.display = 'flex';
+
+        for (let i = 0; i < numDots; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('cases-carousel-dot'); 
+            dot.dataset.slideTo = i;
+            dotContainer.appendChild(dot);
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateCarouselState();
+            });
+        }
+    }
+    
+    function updateCarouselState() {
+        if (!carousel || !container || slides.length === 0) return;
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+            const translatePercentage = currentIndex * 100;
+            container.style.transform = `translateX(-${translatePercentage}%)`;
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev-sibling', 'next-sibling');
+                if (index === currentIndex) {
+                    slide.classList.add('active');
+                }
+            });
+        } else { // Desktop
+            const carouselWidth = carousel.offsetWidth;
+            let slideContentWidth = 0; // Largura do slide sem margens
+            if (slides[0]) {
+                // slides[0].offsetWidth deve agora ser a largura baseada no flex-basis (sem padding)
+                slideContentWidth = slides[0].offsetWidth;
+            }
+
+            if (slideContentWidth <= 0) {
+                requestAnimationFrame(updateCarouselState);
+                return;
+            }
+
+            const slideOuterWidth = slideContentWidth + (slideMarginPxDesktop * 2); // Largura total incluindo margens
+            
+            const centralizingOffset = (carouselWidth / 2) - (slideOuterWidth / 2);
+            const totalTranslation = -(currentIndex * slideOuterWidth) + centralizingOffset;
+            container.style.transform = `translateX(${totalTranslation}px)`;
+
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev-sibling', 'next-sibling');
+                if (index === currentIndex) {
+                    slide.classList.add('active');
+                } else if (index === currentIndex - 1) {
+                    slide.classList.add('prev-sibling');
+                } else if (index === currentIndex + 1) {
+                    slide.classList.add('next-sibling');
+                }
+            });
+        }
+
+        // Atualiza os dots 
+        if (dotContainer) {
+            const dots = dotContainer.querySelectorAll('.cases-carousel-dot');
+            dots.forEach(dot => {
+                dot.classList.toggle('active', parseInt(dot.dataset.slideTo) === currentIndex);
+            });
+        }
+
+        const canNavigate = totalSlides > 1;
+        if (prevBtn) prevBtn.style.display = canNavigate ? 'flex' : 'none';
+        if (nextBtn) nextBtn.style.display = canNavigate ? 'flex' : 'none';
+    }
+
+    function goToNextSlide() {
+        // const maxStartIndex = Math.max(0, totalSlides - itemsPerPage);
+        // Com itemsPerPage = 1, maxStartIndex é totalSlides - 1
+        if (currentIndex < totalSlides - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Loop para o início
+        }
+        updateCarouselState();
+    }
+
+    function goToPrevSlide() {
+        // const maxStartIndex = Math.max(0, totalSlides - itemsPerPage);
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = totalSlides - 1; // Loop para o fim
+        }
+        updateCarouselState();
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', goToNextSlide);
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', goToPrevSlide);
+    }
+
+    let autoplayInterval;
+    function startAutoplay() {
+        stopAutoplay();
+        if (totalSlides <= itemsPerPage) return; // Não auto-play se todos slides visíveis
+        autoplayInterval = setInterval(goToNextSlide, 5500); // Intervalo um pouco diferente para debug, se necessário
+    }
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+
+    let touchStartX = 0;
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoplay();
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const SWIPE_THRESHOLD = 50; // Min. distância para swipe
+        if (touchEndX < touchStartX - SWIPE_THRESHOLD) {
+            goToNextSlide();
+        } else if (touchEndX > touchStartX + SWIPE_THRESHOLD) {
+            goToPrevSlide();
+        }
+        startAutoplay(); // Reinicia autoplay após interação
+    }, { passive: true });
+    
+    // Configuração inicial e responsividade
+    function initializeOrUpdate() {
+        updateItemsPerPageAndSizing();
+        createDots();
+        updateCarouselState();
+        startAutoplay();
+    }
+
+    window.addEventListener('resize', debounce(initializeOrUpdate, 250));
+    initializeOrUpdate(); // Chamada inicial
+}
+// FIM: Nova função para o Carrossel de Cases de Sucesso
+
 // Função para criar partículas flutuantes
 function createFloatingParticles() {
     const container = document.querySelector('.floating-particles');
@@ -452,22 +667,36 @@ function animateParticles() {
     moveParticles();
 }
 
-// Quando o DOM estiver carregado, inicializa as animações em sequência
-document.addEventListener('DOMContentLoaded', function() {
-    // Anima os cards em sequência
-    animateSequence('.flex-col.md\\:flex-row', '.card', 150);
-    
-    // Anima os cards de serviços com atraso maior
-    animateSequence('#servicos .flex-col.md\\:flex-row', '.service-card', 200);
-    
-    // Adiciona classe de paralaxe a elementos selecionados - mantém o efeito parallax
-    document.querySelectorAll('.hero-section h1, .section > img').forEach((el, index) => {
-        el.classList.add('parallax');
-        el.setAttribute('data-speed', (0.05 + (index * 0.02)).toString());
+// Adiciona funcionalidade de debounce para o redimensionamento da janela
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
+
+// Adiciona funcionalidade de redimensionamento para o carrossel
+function resizeCarousel() {
+    const carousels = document.querySelectorAll('.swiper-container');
+    carousels.forEach(container => {
+        const slides = container.querySelectorAll('.swiper-slide');
+        const dotContainer = container.querySelector('.swiper-pagination');
+        const dotWidth = dotContainer.offsetWidth;
+        const slideWidth = slides[0].offsetWidth;
+        const totalWidth = slideWidth * slides.length;
+        const scrollWidth = totalWidth - dotWidth;
+        const scrollbar = container.querySelector('.swiper-scrollbar');
+        
+        if (scrollWidth > 0) {
+            scrollbar.style.width = `${scrollWidth}px`;
+        } else {
+            scrollbar.style.width = '0px';
+        }
     });
-    
-    // Adiciona classe de destaque aos cards
-    document.querySelectorAll('.card').forEach(card => {
-        card.classList.add('highlight-on-view');
-    });
-}); 
+}
+
+// Adiciona evento de redimensionamento
+const resizeEvent = debounce(resizeCarousel, 200);
+window.addEventListener('resize', resizeEvent); 

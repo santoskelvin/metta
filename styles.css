@@ -797,7 +797,7 @@ nav ul li a:hover::after {
     rgba(14, 165, 233, 0.5), 
     rgba(45, 212, 191, 0.2)
   );
-  background-size: 200% 100%;
+  background-size: 200% 200%; /* Aumentada a altura do background para 200% */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s infinite;
@@ -893,7 +893,8 @@ nav ul li a:hover::after {
 /* Carrossel de depoimentos - CORREÇÃO DE OVERFLOW */
 .testimonial-carousel {
   position: relative;
-  overflow: visible !important; /* Permitir que elementos expandam */
+  overflow-x: hidden; /* Adicionado para corrigir rolagem horizontal */
+  overflow-y: visible !important; /* Manter visible para o y se necessário para sombras ou elementos expandidos */
   padding: 2rem 0; /* Adicionar padding para acomodar expansão */
 }
 
@@ -960,43 +961,44 @@ nav ul li a:hover::after {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(15, 23, 42, 0.6);
+  background-color: rgba(15, 23, 42, 0.85); /* Voltando para o fundo escuro semi-transparente */
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(34, 211, 238, 0.2);
+  border: 1px solid rgba(34, 211, 238, 0.25); /* Voltando para a borda azulada */
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 20; /* Aumentar z-index */
+  z-index: 20;
+  opacity: 1;
 }
 
 .carousel-arrow:hover {
-  background-color: rgba(15, 23, 42, 0.9);
+  background-color: rgba(15, 23, 42, 1); /* Voltando para o fundo escuro opaco no hover */
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
   z-index: 21; /* Garantir que fique acima ao hover */
 }
 
 .carousel-arrow.prev {
-  left: -1rem; /* Mover mais para fora para evitar sobreposição */
+  left: 1rem; /* Ajustado de -1rem para dentro do container */
 }
 
 .carousel-arrow.next {
-  right: -1rem; /* Mover mais para fora para evitar sobreposição */
+  right: 1rem; /* Ajustado de -1rem para dentro do container */
 }
 
 /* Wrapper adicional para conter o overflow dos slides */
 .testimonial-carousel {
-  margin: 0 3rem; /* Espaço para as setas */
+  margin: 0 1rem; /* Reduzir margem lateral para dar mais espaço ao conteúdo */
 }
 
 /* Responsividade para mobile */
 @media (max-width: 768px) {
   .testimonial-carousel {
-    margin: 0 1rem;
+    margin: 0 0.5rem; /* Reduzir ainda mais a margem em mobile */
   }
   
   .carousel-arrow {
@@ -1005,11 +1007,11 @@ nav ul li a:hover::after {
   }
   
   .carousel-arrow.prev {
-    left: -0.5rem;
+    left: 0.5rem; /* Ajuste para mobile */
   }
   
   .carousel-arrow.next {
-    right: -0.5rem;
+    right: 0.5rem; /* Ajuste para mobile */
   }
 }
 
@@ -1888,27 +1890,6 @@ header img {
 @keyframes holographicShift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-}
-
-#cases .gradient-blue::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
-  animation: holographicSweep 3s linear infinite;
-}
-
-@keyframes holographicSweep {
-  0% { left: -100%; }
-  100% { left: 100%; }
 }
 
 /* Avatar com efeito neon e pulsação */
@@ -3540,4 +3521,133 @@ header img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* CSS para o Carrossel de Cases de Sucesso */
+.cases-carousel {
+  position: relative;
+  overflow: hidden; /* Prevenir overflow horizontal, mas SEM máscara aqui */
+  margin: 0 1rem; /* Reduzir margem lateral para dar mais espaço ao conteúdo */
+}
+
+/* Novo wrapper para aplicar a máscara apenas aos slides */
+.cases-slides-wrapper {
+  position: relative; /* Necessário para o contexto de overflow e máscara */
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+@media (max-width: 767px) {
+  .cases-slides-wrapper {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+.cases-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.case-slide {
+  flex-shrink: 0;
+  /* padding já está no HTML via px-3 */
+  box-sizing: border-box; /* Garante que padding não aumente a largura total */
+}
+
+/* Ajuste para os cards dentro dos slides terem altura consistente */
+.case-slide .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cases-carousel-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+.cases-carousel-dot {
+  width: 0.65rem; /* Um pouco menor que os dots dos depoimentos */
+  height: 0.65rem;
+  border-radius: 50%;
+  background-color: rgba(100, 116, 139, 0.4);
+  margin: 0 0.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.cases-carousel-dot.active {
+  background-color: var(--metta-cyan);
+  transform: scale(1.15);
+}
+
+.cases-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(15, 23, 42, 0.85); /* Identico a .carousel-arrow */
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(34, 211, 238, 0.25); /* Identico a .carousel-arrow */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+  opacity: 1;
+  color: white; /* Para o SVG stroke='currentColor' */
+}
+
+.cases-carousel-arrow:hover {
+  background-color: rgba(15, 23, 42, 1); /* Identico a .carousel-arrow:hover */
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); /* Identico a .carousel-arrow:hover */
+  /* z-index: 21; é opcional aqui, já que .carousel-arrow também tem */
+}
+
+/* Remover a regra .cases-carousel-arrow svg se ainda existir */
+
+.cases-carousel-arrow.prev {
+  left: 1rem; /* Ajustado de -1rem para dentro do container */
+}
+
+.cases-carousel-arrow.next {
+  right: 1rem; /* Ajustado de -1rem para dentro do container */
+}
+
+/* Wrapper adicional para conter o overflow dos slides */
+.cases-carousel {
+  margin: 0 1rem; /* Reduzir margem lateral para dar mais espaço ao conteúdo */
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .cases-carousel {
+    margin: 0 0.5rem; /* Reduzir ainda mais a margem em mobile */
+  }
+  
+  .cases-carousel-arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .cases-carousel-arrow.prev {
+    left: 0.5rem; /* Ajuste para mobile */
+  }
+  
+  .cases-carousel-arrow.next {
+    right: 0.5rem; /* Ajuste para mobile */
+  }
+}
+
+.footer-border-custom {
+  border-color: #3f3f3f;
 }
